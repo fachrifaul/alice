@@ -202,7 +202,7 @@ class _AliceCallResponseWidgetState
     rows.add(TextButton(
       child: Text("Open video in web browser"),
       onPressed: () async {
-        await launchUrl(Uri.parse(_call.uri));
+        await launch(_call.uri);
       },
     ));
     rows.add(const SizedBox(height: 8));

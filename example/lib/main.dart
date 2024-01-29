@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:alice/alice.dart';
 import 'package:alice/core/alice_http_client_extensions.dart';
 import 'package:alice/core/alice_http_extensions.dart';
-import 'package:alice_example/posts_service.dart';
 import 'package:chopper/chopper.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,6 @@ class _MyAppState extends State<MyApp> {
   late Dio _dio;
   late HttpClient _httpClient;
   ChopperClient? _chopper;
-  late PostsService _postsService;
   Color _primaryColor = Color(0xffff5e57);
   Color _accentColor = Color(0xffff3f34);
   Color _buttonColor = Color(0xff008000);
@@ -44,7 +42,6 @@ class _MyAppState extends State<MyApp> {
     _chopper = ChopperClient(
       interceptors: _alice.getChopperInterceptor(),
     );
-    _postsService = PostsService.create(_chopper);
 
     super.initState();
   }
@@ -84,11 +81,6 @@ class _MyAppState extends State<MyApp> {
               ElevatedButton(
                 child: Text("Run HttpClient Requests"),
                 onPressed: _runHttpHttpClientRequests,
-                style: _buttonStyle,
-              ),
-              ElevatedButton(
-                child: Text("Run Chopper HTTP Requests"),
-                onPressed: _runChopperHttpRequests,
                 style: _buttonStyle,
               ),
               ElevatedButton(
@@ -158,18 +150,6 @@ class _MyAppState extends State<MyApp> {
       );
     }
     _alice.addLogs(logs);
-  }
-
-  void _runChopperHttpRequests() async {
-    String body = jsonEncode(
-        <String, dynamic>{"title": "foo", "body": "bar", "userId": "1"});
-    _postsService.getPost("1");
-    _postsService.postPost(body);
-    _postsService.putPost("1", body);
-    _postsService.putPost("1231923", body);
-    _postsService.putPost("1", null);
-    _postsService.postPost(null);
-    _postsService.getPost("123456");
   }
 
   void _runDioRequests() async {
