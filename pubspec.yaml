@@ -20,8 +20,8 @@ dependencies:
   permission_handler: ^10.2.0
   package_info_plus: ^4.0.2
   open_filex: ^4.3.2
-  sensors_plus: ^4.2.0
-  share_plus: 4.5.0
+  sensors_plus: ^3.0.2
+  share_plus: ^4.2.0
   chopper: ^6.1.4
   collection: 1.17.0
   url_launcher: 6.0.20
